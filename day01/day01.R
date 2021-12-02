@@ -9,7 +9,7 @@ test_input <- c(199,
            260,
            263)
 
-day01_input <- read.csv("C:/Users/Carlin/Documents/GitHub/adventofcode2021/Day1/input.txt", header = FALSE)[,1]
+day01_input <- read.csv("day01/input.txt", header = FALSE)[,1]
 
 #count the number of times a depth measurement increases from the previous measurement. 
 # 199 (N/A - no previous measurement)
