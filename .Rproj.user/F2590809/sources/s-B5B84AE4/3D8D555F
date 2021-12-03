@@ -1,27 +1,27 @@
 {
-    "id": "FA1AF325",
-    "path": "~/GitHub/adventofcode2021/day02/day02.R",
-    "project_path": "day02/day02.R",
+    "id": "3D8D555F",
+    "path": "~/GitHub/adventofcode2021/day03/day03.R",
+    "project_path": "day03/day03.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1030629789",
     "contents": "",
     "dirty": false,
-    "created": 1638466298806.0,
+    "created": 1638550032231.0,
     "source_on_save": false,
-    "relative_order": 2,
+    "relative_order": 4,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "46,33",
-        "scrollLine": "19"
+        "cursorPosition": "57,17",
+        "scrollLine": "52"
     },
     "folds": "",
-    "lastKnownWriteTime": 1638468040,
+    "lastKnownWriteTime": 1638557076,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1638468040854,
+    "last_content_update": 1638557076122,
     "read_only": false,
     "read_only_alternatives": []
 }
