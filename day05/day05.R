@@ -3,9 +3,6 @@ library("tidyverse")
 test_input <- data.frame("vals" = readLines("day05/test_input.txt"))
 day05_input <- data.frame("vals" = readLines("day05/input.txt"))
 
-#x1,y1 -> x2,y2
-
-
 parse_input <- function(input){
   input %>% 
     separate(col = vals, into = c("c1", "c2"), sep = " -> ") %>% 
