@@ -1,0 +1,27 @@
+{
+    "id": "1310283C",
+    "path": "~/GitHub/adventofcode2021/day08/day08.R",
+    "project_path": "day08/day08.R",
+    "type": "r_source",
+    "hash": "1058970233",
+    "contents": "",
+    "dirty": false,
+    "created": 1638983333367.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "49,14",
+        "scrollLine": "21"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1639091671,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1639091671722,
+    "read_only": false,
+    "read_only_alternatives": []
+}
