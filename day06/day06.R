@@ -1,4 +1,4 @@
-
+library("reshape")
 #each lanternfish creates a new lanternfish once every 7 days
 # you can model each fish as a single number that represents the number of days until it creates a new lanternfish.
 
@@ -27,17 +27,19 @@ lanternfish_farm(day06_input, 80)
 # too slow :( 
 
 lanternfish_farm <- function(input, days){
-  bebe_counter <<- c()
+  input <- table(input)
   for(i in 1:days){
-    input <- input - 1
-    bebe_counter <<- c(bebe_counter, setNames(sum(input == -1), i))
-    input[input == -1] <- 6
+    input <- setNames(input, as.numeric(names(input)) - 1)
+    if(any(names(input) == "-1")){
+      input <- c(input[!names(input) == "-1"], 
+                 setNames(input["-1"], 6),
+                 setNames(input["-1"], 8))
+      input <- tapply(input, names(input), sum, na.rm = TRUE)
+    }
   }
   
-  return(input)
+  return(print(sum(input), digits = nchar(sum(input))))
 }
-
-
 
 lanternfish_farm(test_input, 256)
 lanternfish_farm(day06_input, 256)
