@@ -37,3 +37,17 @@ risk_level_calc(test_input)
 risk_level_calc(day09_input)
 
 #### PART 2 ####
+basin_start <- input[1,1]
+
+
+input %>% 
+  separate(col = vals, into = paste0("V", 0:nchar(.$vals)[1]), sep = "") %>% 
+  select(-V0) %>% 
+  add_row(.before = 1) %>%
+  add_row(.after = nrow(.)) %>%
+  add_column("V000" = NA, .before = 1) %>%
+  add_column("V999" = NA, .after = ncol(.)) %>%
+  mutate(row_id = 1:n()) %>% 
+  pivot_longer(cols = -row_id) %>%
+  mutate(col_id = as.numeric(str_remove(name, "V"))) %>% 
+  select(value, col_id, row_id) 
