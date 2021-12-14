@@ -3,7 +3,7 @@
     "path": "~/GitHub/adventofcode2021/day13/day13.R",
     "project_path": "day13/day13.R",
     "type": "r_source",
-    "hash": "2153962118",
+    "hash": "2450567920",
     "contents": "",
     "dirty": false,
     "created": 1639409123087.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "37,5",
-        "scrollLine": "8"
+        "cursorPosition": "3,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1639418885,
+    "lastKnownWriteTime": 1639447869,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1639418885636,
+    "last_content_update": 1639447869075,
     "read_only": false,
     "read_only_alternatives": []
 }
