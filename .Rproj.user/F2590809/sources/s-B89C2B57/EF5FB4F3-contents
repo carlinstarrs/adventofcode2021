@@ -1,0 +1,39 @@
+library("tidyverse")
+library("sf")
+sf_use_s2(FALSE)
+otg <- st_read("C:/Users/Carlin/Documents/overlandtrailguides_extract/master_test_waypoints.gpx", layer = "waypoints")
+mmap <- st_read("C:/Users/Carlin/Documents/overlandtrailguides_extract/pointsofinterest_20220210.kml") %>% 
+  rename("name" = "Name", 
+         "desc" = "Description") %>% 
+  st_zm(drop = TRUE, what = "ZM")
+
+
+
+state_map <- map_data("state") %>% filter(region %in% c("california", "nevada", "arizona", "utah"))
+
+box <- c(ymin = 31.834233, ymax = 39.905883, xmin = -119.987815, xmax = -109.133568)
+out <- bind_rows(otg, mmap) %>% 
+  st_crop(st_bbox(box))
+
+ggplot() +
+  geom_polygon(data = state_map, aes(x = long, y = lat, group = group, fill = region)) +
+  geom_sf(data = out) + 
+  geom_sf(data = outside, color = "red")
+
+
+st_write(out, "desert2022_poi.kml")
+
+#bot left 32.857134, -116.858449
+#bot right 31.334233, -109.188440
+#up right 41.905883, -109.133568
+#up left 38.891309, -119.987815
+
+st_layers("C:/Users/Carlin/Documents/overlandtrailguides_extract/explore.kml")
+
+explore <- st_read("C:/Users/Carlin/Documents/overlandtrailguides_extract/explore.kml") %>% st_zm(drop = TRUE, what = "ZM")
+
+outside <-  out[!lengths(st_intersects(out, explore)), ]
+
+st_write(outside[1:500,], "newpoints1.kml")
+st_write(outside[501:1000,], "newpoints2.kml")
+st_write(outside[1001:1067,], "newpoints3.kml")

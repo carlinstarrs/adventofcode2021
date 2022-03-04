@@ -1,0 +1,503 @@
+library("tidyverse")
+page <- read_html("https://www.overlandtrailguides.com/overland-routes-by-region")
+library("rvest")
+page <- read_html("https://www.overlandtrailguides.com/overland-routes-by-region")
+View(page)
+page %>%
+html_elements("p")
+page %>%
+html_elements("p") %>%
+html_elements("span")
+page %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a")
+page %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a") %>%
+html_attr("href")
+subpages <- page %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a") %>%
+html_attr("href")
+region_page <- read_html("https://www.overlandtrailguides.com/feed/categories/british-columbia")
+region_page
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div")
+region_page <- "https://www.overlandtrailguides.com/feed/categories/british-columbia")
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div")
+region_page <- "https://www.overlandtrailguides.com/feed/categories/british-columbia"
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div")
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a")
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href")
+out <- read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href")
+out[!is.na(out)]
+read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+[!is.na(.)]
+out <- read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{[!is.na(.)]}
+out <- read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[!is.na(.)]}
+out
+all_trails <- read_html(region_page) %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[!is.na(.)]}
+trail_page <- "https://www.overlandtrailguides.com/post/cariboo-chilcotin-backcountry-trail-seg-1"
+trail_page %>%
+html_elements("a")
+trail_page <- "https://www.overlandtrailguides.com/post/cariboo-chilcotin-backcountry-trail-seg-1"
+trail_page %>%
+read_html()
+html_elements("a") %>%
+html_attr("href")
+trail_page %>%
+read_html() %>%
+html_elements("p")
+html_elements("a")
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a")
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href")
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx")]}
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+all_trails <-  region_page %>%
+read_html() %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[!is.na(.)]}
+trail_page <- "https://www.overlandtrailguides.com/post/cariboo-chilcotin-backcountry-trail-seg-1"
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+gpx_page <- trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+gpx_page <- "https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1"
+gpx_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a'")
+gpx_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a")
+gpx_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("span")
+gpx_page %>%
+read_html() %>%
+html_elements("p")
+gpx_page %>%
+read_html()
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("span") #%>%
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("a") #%>%
+gpx_page %>%
+read_html()
+aa <- gpx_page %>%
+read_html()
+View(aa)
+aa$doc
+aa$node
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") #%>%
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("p")
+source("~/.active-rstudio-document", echo=TRUE)
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("a")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+#html_elements("p") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("p")
+gpx_page %>%
+read_html()
+gpx_page %>%
+read_html() %>%
+html_elements("a")
+gpx_page %>%
+read_html() %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+html_elements("span")
+gpx_page %>%
+read_html() %>%
+html_elements("a")
+gpx_page %>%
+read_html() %>%
+html_elements("div")
+gpx_page %>%
+read_html() %>%
+html_elements("p")
+source("~/.active-rstudio-document", echo=TRUE)
+gpx_page %>%
+read_html() %>%
+html_attr("href")
+gpx_page %>%
+read_html() %>%
+html_nodes(xpath='//*[@id="comp-koj8vqhv1"]/p[4]/span[2]/a')
+gpx_page <- "https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1"
+gpx_page %>%
+read_html() %>%
+html_nodes("a")
+gpx_page %>%
+read_html() %>%
+html_elements("a")
+gpx_page %>%
+read_html() %>%
+html_elements("span")
+gpx_page %>%
+read_html() %>%
+html_elements("p")
+gpx_page %>%
+read_html() %>%
+html_nodes("a")
+gpx_page %>%
+read_html() %>%
+html_nodes(xpath = "/html/body/div/div/div[3]/div/main/div/div/div/div[2]/div/div/div/div[1]/p[4]/span[2]/a")
+gpx_page %>%
+read_html() %>%
+html_nodes(xpath = "//*[@id="comp-koj8vqhv1"]/p[4]/span[2]/a")
+gpx_page %>%
+read_html() %>%
+html_nodes(xpath = "//*[@id='comp-koj8vqhv1']/p[4]/span[2]/a")
+tt <- gpx_page %>%
+read_html()
+tt
+tt[grepl("gpx", tt)]
+tt[2]
+tt$doc
+tt <- gpx_page %>%
+read_html() %>%
+html_nodes("u")
+gpx_page %>%
+read_html() %>%
+html_nodes("u")
+gpx_page %>%
+read_html() %>%
+html_nodes("p")
+gpx_page %>%
+read_html() %>%
+html_attr("data-hook")
+gpx_page %>%
+read_html() %>%
+html_nodes("a") %>%
+html_attr("data-hook")
+gpx_page %>%
+read_html() %>%
+html_nodes("a")
+gpx_page %>%
+read_html() %>%
+html_elements("a")
+library("RSelenium")
+install.packages("RSelenium")
+library("RSelenium")
+rD <- rsDriver() # runs a chrome browser, wait for necessary files to download
+html_structure(gpx_page)
+install.packages("decapitated")
+gpx_page %>%
+read_html()
+gpx_page %>%
+read_html() %>%
+html_node("div")
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+html_node("div")
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+html_node("div") %>%
+html_node("div")
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+html_node("div") %>%
+html_node("div") %>%
+html_text()
+gpx_page %>%
+read_html() %>%
+html_text()
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+html_text()
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+str_extract("gpx")
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+as.character()
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+writeLines("texttest.txt")
+gpx_page %>%
+read_html() %>%
+html_node("div") %>%
+as.character() %>%
+writeLines("texttest.txt")
+remDr <- remoteDriver(
+remoteServerAddr = "localhost",
+port = 4445L,
+browserName = "firefox"
+)
+remDr$open()
+install.packages("decapitated")
+library("httr")
+library("jsonlite")
+master_directory <- "https://www.overlandtrailguides.com/overland-routes-master-directory"
+master_directory %>%
+read_html()
+download.file("https://storage.googleapis.com/overlandtraxx/gpx_files/cedarmesa-heritage-trail.gpx", destfile = "test")
+download.file("https://storage.googleapis.com/overlandtraxx/gpx_files/cedarmesa-heritage-trail.gpx", destfile = "test.gpx")
+gpx_page %>%
+read_html() %>%
+toString()
+html_node("div") %>%
+str_match("gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_match("gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_match("a href=.*(.gpx)")
+str_extract("a href=.*(gpx)")
+str_extract(pattern = "a href=.*(gpx)")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_match("a href=.*(.gpx)")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_match("https://storage.googleapis.com/overlandtraxx/gpx_files/cariboo-chilcotin-backcountry-seg1.gpx")
+?str_match
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://storage.googleapis.com/overlandtraxx/gpx_files/cariboo-chilcotin-backcountry-seg1.gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract(".gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("\\.gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("\.gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("\\.gpx")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://storage.googleapis.com")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://storage")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("https://.*")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx-alexander-mackenzie-trail")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)\\")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)\\\\")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)\\")
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)\")
+https://storage.googleapis.com/overlandtraxx/gpx_files/cariboo-chilcotin-backcountry-seg1.gpx
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)/\")
+https://storage.googleapis.com/overlandtraxx/gpx_files/cariboo-chilcotin-backcountry-seg1.gpx
+gpx_page %>%
+read_html() %>%
+toString() %>%
+str_extract("gpx(.*?)\\\")
+https://storage.googleapis.com/overlandtraxx/gpx_files/cariboo-chilcotin-backcountry-seg1.gpx

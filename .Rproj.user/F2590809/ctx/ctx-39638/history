@@ -1,0 +1,512 @@
+remDr$open()
+remDr$navigate("http://www.google.com/ncr")
+remDr
+remDr$close()
+rD$server$stop()
+system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr <- remoteDriver(remoteServerAddr = "172.17.0.2", port = 4444L, browserName = "chrome")
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+remDr$open()
+remDr$navigate("http://www.google.com/")
+remDr$getTitle()
+gpx_page <- "https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1"
+remDr$navigate(gpx_page)
+remDr$getTitle()
+remDir$errorDetails
+remDr$errorDetails
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+remDr$getTitle()
+remDr$navigate("https://www.overlandtrailguides.com/")
+remDr$navigate("http://www.overlandtrailguides.com/")
+remDr$navigate("http://www.google.com/")
+remDr$close()
+remDr$open()
+remDr$navigate("http://www.overlandtrailguides.com/")
+remDr$getTitle()
+remDr$close()
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+remDr$getTitle()
+remDr$findElement(using = "name", value = "email-or username")
+login <- remDr$findElement(using = "name", value = "email-or username")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+remDr$close()
+login$close
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "name", value = "email-or username")
+login <- remDr$findElement(using = "name", "email-or username")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw$sendKeysToElement(list("!t1nsel!"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!"))
+pw$sendKeysToElement(list("!t1nsel!", "\uE007"))
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+pw$sendKeysToElement(list("!t1nsel!"))
+pw$sendKeysToElement(key = "enter")
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!"))
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr$close()
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!"))
+pw$sendKeysToElement(key = "enter")
+pw$sendKeysToElement(list(key = "enter"))
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr$close()
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!"))
+pw$sendKeysToElement(list(key = "enter"))
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr$close()
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr$close()
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+gpx_url <- remDr$findElement(using = "name", value="a href")
+gpx_url <- remDr$findElement(using = "xpath", value="//*[@id='comp-koj8vqhv1']/p[4]/span[2]/a")
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+remDr$close()
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+#remDr$close()
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+remDr$navigate("https://www.overlandtrailguides.com/gpx-camino-del-diablo")
+remDr$findElement(using = "xpath", value="//a[contains(text(),'googleapis')]")
+remDr$findElement(using = "xpath", "//a[contains(text(),'googleapis')]")
+remDr$findElement(using = "xpath", "//input[@id = 'lst-ib']")
+remDr$navigate("https://www.overlandtrailguides.com/gpx-camino-del-diablo")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+#remDr$close()
+remDr$open()
+remDr$navigate("https://www.overlandtrailguides.com/gpx-cariboo-chilco-trail-seg1")
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+remDr$navigate("https://www.overlandtrailguides.com/gpx-camino-del-diablo")
+remDr$findElement(using = "xpath", "/input[@id = 'lst-ib']")
+remDr$findElement(using = "xpath", "//input[@id = 'lst-ib']")
+remDr$findElement(using = "xpath", "//*[@id='comp-kldzzqbi1']/ul/li[1]/p/span/a")
+gpx_url <- remDr$findElement(using = "xpath", "//*[@id='comp-kldzzqbi1']/ul/li[1]/p/span/a")
+gpx_url$getElementText
+val <- gpx_url$getElementText
+val <- gpx_url$getElementText()
+val
+val <- gpx_url$getAttribute("href")
+val <- gpx_url$getElementAttribute("href")
+val
+remDr$findElement(using = "xpath", "//*[@href]")
+gpx_url <- remDr$findElement(using = "xpath", "//*[@href]")
+gpx_url
+val <- gpx_url$getElementAttribute("href")
+val
+gpx_url <- remDr$findElements(using = "xpath", "//*[@href]")
+val <- unlist(lapply(webElems, function(x) {x$getElementAttribute("href")}))
+val <- unlist(lapply(gpx_url, function(x) {x$getElementAttribute("href")}))
+val
+val[grepl("gpx", val)]
+val[grepl("gpx$", val)]
+val <- val[grepl("gpx$", val)]
+page <- read_html("https://www.overlandtrailguides.com/overland-routes-by-region")
+subpages <- page %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a") %>%
+html_attr("href")
+region_page <- "https://www.overlandtrailguides.com/feed/categories/british-columbia"
+all_trails <-  region_page %>%
+read_html() %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[!is.na(.)]}
+trail_page <- "https://www.overlandtrailguides.com/post/cariboo-chilcotin-backcountry-trail-seg-1"
+gpx_pages <- trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+gpx_pages
+all_trails
+gpx_pages <- trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+gpx_pages
+page <- read_html("https://www.overlandtrailguides.com/overland-routes-by-region")
+get_subpages <- function(page){
+page %>%
+html_elements("p") %>%
+html_elements("span") %>%
+html_elements("a") %>%
+html_attr("href")
+}
+subpages <- get_subpages(page)
+subpages
+all_trails <- map_chr(subpages, get_all_trails)
+get_all_trails <-  function(region_page){
+region_page %>%
+read_html() %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("article") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("div") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[!is.na(.)]}
+}
+all_trails <- map_chr(subpages, get_all_trails)
+subpages
+all_trails <- map(subpages, get_all_trails)
+all_tails
+all_trails
+all_trails <- unlist(all_trails)
+all_trails
+get_gpx_pages <- function(trail_page){
+trail_page %>%
+read_html() %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+{.[grepl("gpx", .)]}
+}
+gpx_pages <- map(all_trails, get_gpx_pages)
+gpx_pages <- unlist(gpx_pages)
+gpx_pages
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+# log_sess <- read_html(gpx_page)
+# log_form <- html_form(log_sess)[[1]]
+#
+# read_html(gpx_page) %>%
+#   html_element("form")
+#
+# sel <- wdman::selenium()
+# sel$log
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+#remDr$close()
+remDr$open()
+remDr$navigate(gpx_pages[1])
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+i <- 1
+gpx_urls <- c()
+print(gpx_pages[i])
+remDr$navigate(gpx_pages[i])
+gpx_url <- remDr$findElements(using = "xpath", "//*[@href]")
+val <- unlist(lapply(gpx_url, function(x) {x$getElementAttribute("href")}))
+val <- val[grepl("gpx$", val)]
+gpx_urls <- c(gpx_urls, val)
+gpx_urls <- c()
+for(i in 1:length(gpx_pages)){
+print(gpx_pages[i])
+remDr$navigate(gpx_pages[i])
+gpx_url <- remDr$findElements(using = "xpath", "//*[@href]")
+val <- unlist(lapply(gpx_url, function(x) {x$getElementAttribute("href")}))
+val <- val[grepl("gpx$", val)]
+gpx_urls <- c(gpx_urls, val)
+}
+gpx_urls
+download.file(gpx_urls[1], destfile = "test.gpx")
+remDr$close()
+remDr$closeServer()
+str_extract(gpx_urls[1], "([^\/]+$)")
+str_extract(gpx_urls[1], "([^\\/]+$)")
+for(i in 1:length(gpx_urls)){
+download.file(gpx_urls[i], destfile = str_extract(gpx_urls[i], "([^\\/]+$)"))
+}
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+gpx_path
+library("sf")
+st_read(gpx_path[1])
+dat <- st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[1]))
+head(dat)
+master_gpx <- data.frame()
+dat <- st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[1]))
+master_gpx <- dat %>% bind_rows(dat)
+master_gpx <- data.frame()
+for(i in 1:length(gpx_path)){
+dat <- st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+master_gpx <- dat %>% bind_rows(dat)
+}
+master_gpx
+test_gpx <- st_wrote(master_gpx, "master_text.gpx")
+test_gpx <- st_write(master_gpx, "master_text.gpx")
+test_gpx <- st_wrote(master_gpx, "master_text.shp")
+test_gpx <- st_write(master_gpx, "master_text.shp")
+test_gpx <- st_write(master_gpx, "master_text.kmz")
+?st_write
+writeOGR(dsn = "master_test.gpx", driver = "GPX")
+library("rgdal")
+install.packages("rgdal")
+writeOGR(dsn = "master_test.gpx", driver = "GPX")
+library("rgdal")
+writeOGR(dsn = "master_test.gpx", driver = "GPX")
+master_gpx <- data.frame()
+for(i in 1:length(gpx_path)){
+dat <- readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+master_gpx <- dat %>% bind_rows(dat)
+}
+i <- 1
+dat <- readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+ogrListLayers(dat)
+ogrListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+remDr$open()
+remDr$navigate(gpx_pages[1])
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+remDr$navigate(gpx_pages[1])
+remDr$open()
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+remDr$open()
+remDr$navigate(gpx_pages[1])
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+gpx_urls <- c()
+missed_gpx <- c()
+for(i in 1:length(gpx_pages)){
+print(gpx_pages[i])
+remDr$navigate(gpx_pages[i])
+gpx_url <- remDr$findElements(using = "xpath", "//*[@href]")
+val <- unlist(lapply(gpx_url, function(x) {x$getElementAttribute("href")}))
+val <- val[grepl("gpx$", val)]
+gpx_urls <- c(gpx_urls, val)
+if(length(val) == 0){
+missed_gpx <- c(missed_gpx, val)
+}
+}
+gpx_urls
+gpx_pages[grepl(".gpx$", gpx_pages)]
+gpx_urls <- c(gpx_urls, gpx_pages[grepl(".gpx$", gpx_pages)])
+gpx_urls
+remDr$close()
+remDr$closeServer()
+for(i in 1:length(gpx_urls)){
+download.file(gpx_urls[i], destfile = str_extract(gpx_urls[i], "([^\\/]+$)"))
+}
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+master_gpx <- data.frame()
+dat <- readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+master_gpx <- data.frame()
+dat <- readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i])
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+i
+i <- 1
+dat <- readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+ogListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+ogrListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+dat
+dat <- st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+dat
+?st_read
+st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$layer_name
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+lyaer_names
+layer_names
+layer_names$name
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i], layer = x))
+master_gpx <- dat %>% bind_rows(dat)
+}
+writeOGR(dsn = "master_test.gpx", driver = "GPX")
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i], layer = .x))
+master_gpx <- dat %>% bind_rows(dat)
+}
+writeOGR(dsn = "master_test.gpx", driver = "GPX")
+x <- layer_names[1]
+x
+st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i], layer = x)
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+dat
+View(dat)
+names(dat) <- layer_names
+View(dat)
+master_gpx <- list()
+for(i in 1:length(gpx_path)){
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- c(master_gpx, dat)
+}
+View(dat)
+View(master_gpx)
+master_gpx <- list()
+i <- 1
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+dat
+master_gpx <- list(master_gpx, dat)
+View(master_gpx)
+names(master_gpx)[length(master_gpx)]
+gpx_path[i]
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+View(master_gpx)
+master_gpx <- list()
+for(i in 1:length(gpx_path[1:5])){
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- list(master_gpx, dat)
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+}
+View(master_gpx)
+master_gpx <- list()
+i <- 1
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- list(master_gpx, dat)
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+i <- 2
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx2 <- list(master_gpx, dat)
+master_gpx2 <- c(master_gpx, dat)
+master_gpx2 <- as.list(master_gpx, dat)
+master_gpx2 <- c(master_gpx, as.list(dat))
+View(master_gpx2)
+dat_list <- as.list(dat)
+dat_list <- list(dat)
+master_gpx2 <- c(master_gpx, list(dat))
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+View(master_gpx2)
+master_gpx <- c(master_gpx, list(dat))
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+View(master_gpx2)
+View(master_gpx)
+gpx_path[i]
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+master_gpx <- list()
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- c(master_gpx, list(dat))
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+i
+i <- 3
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- c(master_gpx, list(dat))
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+View(master_gpx)
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+master_gpx <- list()
+for(i in 1:length(gpx_path[1:5])){
+layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+names(dat) <- layer_names
+master_gpx <- c(master_gpx, list(dat))
+names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+}
+View(master_gpx)
+View(master_gpx)
+waypoints <- master_gpx %>% pluck(1)
+View(waypoints)
+waypoints <- map(master_gpx, ~pluck(.x, 1))
+View(waypoints)
+waypoints <- map_dfr(master_gpx, ~pluck(.x, 1))
+View(waypoints)
+layer_names
+waypoints <- map_dfr(master_gpx, ~pluck(.x, 1))
+routes <- map_dfr(master_gpx, ~pluck(.x, 2))
+tracks <- map_dfr(master_gpx, ~pluck(.x, 3))
+route_points <- map_dfr(master_gpx, ~pluck(.x, 4))
+track_points <- map_dfr(master_gpx, ~pluck(.x, 5))
+?st_write
+writeOGR(dsn = "master_test.gpx", layer = "waypoints", driver = "GPX")
+writeOGR(dsn = "master_test.gpx", layer = "waypoints", driver = "GPX",  dataset_options="GPX_USE_EXTENSIONS=yes")
+plot(waypoints)
+plot(waypoints$geometry)
+?write_ogr
+?writeOGR
+writeOGR(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX",  dataset_options="GPX_USE_EXTENSIONS=yes")
+readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i])
+)
+?readOGR
+ogrListLayer(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+ogrListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+layer_names <- ogrListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+layer_names[1]
+layer_names[2]
+layer_names[3]
+layer_names[4]
+layer_names[5]
+layer_names <- ogrListLayers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))
+dat <- map(layer_names, ~readOGR(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+?readOGR
+layer_names[1:5]
+writeOGR(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX",  dataset_options="GPX_USE_EXTENSIONS=yes")
+?st_write
+st_write(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX")
+st_write(obj = routes, dsn = "master_test.gpx", layer = "routes", driver = "GPX")
+st_write(obj = routes, dsn = "master_test.gpx", layer = "routes", driver = "GPX", append = TRUE)
+st_write(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX")
+st_write(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX", overwrite = T)
+st_write(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX", delete_dsn = TRUE)
+st_write(obj = routes, dsn = "master_test.gpx", layer = "routes", driver = "GPX", delete_layer = TRUE)
+st_write(obj = routes, dsn = "master_test.gpx", layer = "routes", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_layer = TRUE)
+st_write(obj = waypoints, dsn = "master_test.gpx", layer = "waypoints", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = waypoints, dsn = "master_test2.gpx", layer = "waypoints", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = routes, dsn = "master_test2.gpx", layer = "routes", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_layer = TRUE)
+st_write(obj = tracks, dsn = "master_test2.gpx", layer = "tracks", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_layer = TRUE)
+st_write(obj = route_points, dsn = "master_test2.gpx", layer = "route_points", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_layer = TRUE)
+st_write(obj = track_points, dsn = "master_test2.gpx", layer = "track_points", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_layer = TRUE)

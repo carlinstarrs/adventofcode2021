@@ -1,0 +1,108 @@
+library("tidyverse")
+library("rvest")
+library("RSelenium")
+library("sf")
+
+page <- read_html("https://www.overlandtrailguides.com/overland-routes-by-region")
+
+get_subpages <- function(page){
+  page %>% 
+    html_elements("p") %>% 
+    html_elements("span") %>% 
+    html_elements("a") %>% 
+    html_attr("href")
+}
+
+subpages <- get_subpages(page)
+region_page <- "https://www.overlandtrailguides.com/feed/categories/british-columbia"
+
+get_all_trails <-  function(region_page){
+  region_page %>%
+    read_html() %>% 
+    html_elements("div") %>% 
+    html_elements("div") %>% 
+    html_elements("article") %>% 
+    html_elements("div") %>%
+    html_elements("div") %>%
+    html_elements("div") %>%
+    html_elements("a") %>% 
+    html_attr("href") %>% 
+    {.[!is.na(.)]}
+}
+
+all_trails <- unlist(map(subpages, get_all_trails))
+
+get_gpx_pages <- function(trail_page){
+  trail_page %>% 
+    read_html() %>% 
+    html_elements("p") %>%
+    html_elements("a") %>% 
+    html_attr("href") %>% 
+    {.[grepl("gpx", .)]}
+}
+
+gpx_pages <- unlist(map(all_trails, get_gpx_pages))
+
+shell('docker run -d -p 4445:4444 selenium/standalone-chrome')
+shell('docker ps')
+
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4445L, browserName = "chrome")
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+
+remDr$open()
+remDr$navigate(gpx_pages[1])
+login <- remDr$findElement(using = "css", "[name = 'email-or username']")
+login$sendKeysToElement(list("carlinstarrs@gmail.com"))
+
+pw <- remDr$findElement(using = "css", "[name = 'password']")
+pw$sendKeysToElement(list("!t1nsel!", key = "enter"))
+
+gpx_urls <- c()
+missed_gpx <- c()
+for(i in 1:length(gpx_pages)){
+  print(gpx_pages[i])
+  remDr$navigate(gpx_pages[i])
+  gpx_url <- remDr$findElements(using = "xpath", "//*[@href]")
+  val <- unlist(lapply(gpx_url, function(x) {x$getElementAttribute("href")}))
+  val <- val[grepl("gpx$", val)] 
+  gpx_urls <- c(gpx_urls, val)
+  if(length(val) == 0){
+    missed_gpx <- c(missed_gpx, val)
+  }
+}
+
+gpx_urls <- c(gpx_urls, gpx_pages[grepl(".gpx$", gpx_pages)])
+
+remDr$close()
+remDr$closeServer()
+
+for(i in 1:length(gpx_urls)){
+  download.file(gpx_urls[i], destfile = str_extract(gpx_urls[i], "([^\\/]+$)"))
+}
+
+gpx_path <- list.files("C:/Users/Carlin/Documents/overlandtrailguides_20220209", pattern = "gpx$")
+
+master_gpx <- list()
+for(i in 1:length(gpx_path)){
+  layer_names <- st_layers(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]))$name
+  dat <- map(layer_names, ~st_read(file.path("C:/Users/Carlin/Documents/overlandtrailguides_20220209", gpx_path[i]), layer = .x))
+  names(dat) <- layer_names
+  master_gpx <- c(master_gpx, list(dat))
+  
+  names(master_gpx)[length(master_gpx)] <- gpx_path[i]
+}
+
+waypoints <- map_dfr(master_gpx, ~pluck(.x, 1))
+routes <- map_dfr(master_gpx, ~pluck(.x, 2))
+tracks <- map_dfr(master_gpx, ~pluck(.x, 3))
+route_points <- map_dfr(master_gpx, ~pluck(.x, 4))
+track_points <- map_dfr(master_gpx, ~pluck(.x, 5))
+
+filename <- "master_test"
+st_write(obj = waypoints, dsn = paste0(filename, "_waypoints.gpx"), layer = "waypoints", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = routes, dsn =  paste0(filename, "_routes.gpx"), layer = "routes", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = tracks, dsn =  paste0(filename, "_tracks.gpx"), layer = "tracks", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = route_points, dsn =  paste0(filename, "_route_points.gpx"), layer = "route_points", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+st_write(obj = track_points, dsn =  paste0(filename, "_track_points.gpx"), layer = "track_points", driver = "GPX", dataset_options="GPX_USE_EXTENSIONS=yes", delete_dsn = TRUE)
+
+
