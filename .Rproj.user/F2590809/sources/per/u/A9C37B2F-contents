@@ -1,0 +1,97 @@
+library("tidyverse")
+library("httr")
+library("lubridate")
+library("RSelenium")
+library("jsonlite")
+
+# api_key <- "B3A2B55E-9BFE-11EC-B9BF-42010A800003"
+# 
+# nwlng <- -122.106047
+# nwlat <- 37.705143
+# selng <- -122.044295
+# selat <- 37.667840
+
+# 
+# url <- paste0("https://api.purpleair.com/v1/sensors?api_key=", api_key, "&fields=pm2.5_24hour&location_type=0&nwlng=", nwlng, "&nwlat=", nwlat, "&selng=", selng, "&selat=", selat)
+# 
+# r <- GET(url)
+# 
+# tt <- content(r, "text")
+# 
+# fromJSON(tt)
+
+
+upper_ca <- "https://www.purpleair.com/sensorlist?exclude=true&nwlat=42.11169264269327&selat=38.902851909465056&nwlng=-127.21693019415514&selng=-118.05005048050876&sensorsActive2=604800"
+#middle_ca <- "https://www.purpleair.com/sensorlist?exclude=true&nwlat=38.52782643027081&selat=34.188375296227846&nwlng=-126.2903320825237&selng=-117.12345236887734&sensorsActive2=604800"
+middle_ca1 <- "https://www.purpleair.com/sensorlist?exclude=true&nwlat=38.52782643027081&selat=37.099677828553325&nwlng=-126.2903320825237&selng=-115.72824674915512&sensorsActive2=604800"
+middle_ca2 <- "https://www.purpleair.com/sensorlist?exclude=true&nwlat=37.099677828553325&selat=34.476128330100636&nwlng=-126.2903320825237&selng=-115.72824674915512&sensorsActive2=604800"
+lower_ca <- "https://www.purpleair.com/sensorlist?exclude=true&nwlat=34.476128330100636&selat=29.688297298600844&nwlng=-122.37039603143214&selng=-113.21157022426017&sensorsActive2=604800"
+
+shell('docker run -d -p 4449:4444 -v C:\\Users\\Carlin\\Documents\\purpleaiR:/home/seluser/Downloads selenium/standalone-chrome')
+shell('docker ps')
+
+eCaps <- list(
+  chromeOptions = 
+    list(prefs = list(
+      "profile.default_content_settings.popups" = 0L,
+      "download.prompt_for_download" = FALSE,
+      "download.default_directory" = "C:\\Users\\Carlin\\Documents\\purpleaiR"
+    )
+    )
+)
+# rD <- rsDriver()
+# 
+# remDr <- rD$client
+
+
+remDr <- remoteDriver(remoteServerAddr = "localhost", port = 4449L, browserName = "chrome", extraCapabilities = eCaps)
+#system("taskkill /im java.exe /f", intern=FALSE, ignore.stdout=FALSE)
+
+remDr$open()
+remDr$navigate(middle_ca2)
+
+start_date <- remDr$findElement(using = "css", "[id = 'startdatepicker']")
+start_date$sendKeysToElement(list("1/1/2018"))
+
+end_date <- remDr$findElement(using = "css", "[id = 'enddatepicker']")
+end_date$sendKeysToElement(list("1/1/2022"))
+
+avg <- remDr$findElement(using = 'xpath', "//*/option[@value = '1440']")
+avg$clickElement()
+
+buttons <- remDr$findElements(using = "xpath", "//button[text()='Download Primary (A)']")
+#val <- map_chr(buttons, function(x) {unlist(x$getElementAttribute("onclick"))})
+
+map(buttons[1:100], function(x) {
+  x$clickElement()
+  Sys.sleep(240)
+})
+
+remDr$close()
+remDr$closeServer()
+
+#<button id="1431668_download_button" onclick="download(false,0,'10190 Purple Air (outside) (39.524182 -119.930597)','1431668', '81Z0ZXB8LLQ42VS2', 'startdatepicker', 'enddatepicker', 'average', 1);">Download Primary (A)</button>
+
+
+
+#download NOAA dat
+start_date <- mdy("1-1-18")
+end_date <- mdy("1-1-22")
+n_days <- interval(start_date,end_date)/days(1)
+
+
+dayta_frame <- tibble("fulldate" = start_date + days(0:n_days)) %>% 
+  mutate(month = month(fulldate), 
+         year = year(fulldate), 
+         filename = paste0('https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons/KML/', 
+                           year, "/", 
+                           str_pad(month, 2, "left", "0"), "/smoke", 
+                           str_remove_all(as.character(fulldate), "-"), 
+                           ".kml"))
+
+map(dayta_frame$filename, function(x) {
+  tryCatch(suppressWarnings(download.file(x, destfile = file.path("C:/Users/Carlin/Documents/genoaa_data", str_extract(x, "([^\\/]+$)")))), 
+           error = function(e) paste0(x, " threw error"))
+}
+)
+

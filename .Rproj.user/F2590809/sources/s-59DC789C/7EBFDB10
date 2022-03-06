@@ -1,0 +1,28 @@
+{
+    "id": "7EBFDB10",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1646605826858.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "id": "18c63b271cb4451b8f27826796a2ab5b",
+        "name": "basins",
+        "title": "basins",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2314885436531551800,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1646605826858,
+    "read_only": false,
+    "read_only_alternatives": []
+}

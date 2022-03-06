@@ -1,0 +1,28 @@
+library("tidyverse")
+
+test_input <- readLines("day15/test_input.txt")
+
+
+
+#add up the risk levels of each position you enter
+
+#the starting position is never entered
+
+#Your goal is to find a path with the lowest total risk.
+#you cannot move diagonally
+
+#What is the lowest total risk of any path from the top left to the bottom right?
+
+start_coords <- c(0,0)
+
+final_coords <- c(nchar(input[1]), length(input))
+
+ll <- nchar(input[1))
+
+out <- data.frame(input) %>% 
+  mutate(row_id = 1:nrow(.)) %>% 
+  separate_rows(input, sep = "") %>% 
+  filter(!input == "") %>% 
+  mutate(col_id = rep_len(1:ll, length.out = nrow(.)))
+
+         
