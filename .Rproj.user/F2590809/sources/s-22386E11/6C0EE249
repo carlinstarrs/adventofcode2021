@@ -1,0 +1,28 @@
+{
+    "id": "6C0EE249",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1647375237498.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "id": "d4751ed614c64960802eb41ef4c48806",
+        "name": "travelled_paths",
+        "title": "travelled_paths",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1646967348,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1647375237498,
+    "read_only": false,
+    "read_only_alternatives": []
+}

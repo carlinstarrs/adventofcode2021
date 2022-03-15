@@ -1,0 +1,27 @@
+{
+    "id": "F46443AE",
+    "path": "~/GitHub/adventofcode2021/day15/day15.R",
+    "project_path": "day15/day15.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1640055471943.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "tempName": "Untitled2",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "120,3",
+        "scrollLine": "100"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1647377822,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1647377822913,
+    "read_only": false,
+    "read_only_alternatives": []
+}

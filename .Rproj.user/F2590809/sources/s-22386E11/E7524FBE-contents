@@ -1,0 +1,112 @@
+library("tidyverse")
+library("httr")
+library("lubridate")
+library("jsonlite")
+library("sf")
+
+options(timeout = max(300, getOption("timeout")))
+
+api_key <- "B3A2B55E-9BFE-11EC-B9BF-42010A800003"
+
+r <- GET(paste0("https://www.purpleair.com/json?api_key=",api_key))
+tt <- content(r, "text")
+dat <- fromJSON(tt)
+
+#https://hub.arcgis.com/datasets/CMHS::states-shapefile/explore?location=36.713119%2C57.406565%2C4.00
+states <- st_read("C:/Users/Carlin/Documents/ESRI_states_shapefile/States_shapefile.shp") %>% 
+  filter(State_Name == "CALIFORNIA")
+
+df <- as_tibble(dat$results) %>% 
+  filter(DEVICE_LOCATIONTYPE == "outside") %>% 
+  filter(!is.na(Lat) & !is.na(Lon)) %>% 
+  st_as_sf(coords = c("Lon", "Lat")) %>% 
+  st_set_crs(st_crs(states)) %>% 
+  st_join(states) %>% 
+  filter(State_Name == "CALIFORNIA") %>% 
+  mutate(Label = str_remove(Label, "/"))
+  
+
+ggplot() + 
+  geom_sf(data = states) + 
+  geom_sf(data = df)
+
+start_date <- "2018-1-1"
+end_date <- "2022-1-1"
+out_dir <- "C:/Users/Carlin/Documents/purpleair_api"
+
+get_sensor_data <- function(roww, start_date, end_date, out_dir, sleep = 20){
+  # pmap(df, function(...){
+  #   roww <- data.frame(...)
+    label <- roww$Label
+    sensor_channel <- roww$THINGSPEAK_PRIMARY_ID
+    thingspeak_api_key <- roww$THINGSPEAK_PRIMARY_ID_READ_KEY
+    
+    field_names <- c("created_at","PM1.0_CF1_ug/m3","PM2.5_CF1_ug/m3","PM10.0_CF1_ug/m3","UptimeMinutes","RSSI_dbm","Temperature_F","Humidity_%","PM2.5_ATM_ug/m3")
+    
+    filename <- paste0(label, "_", sensor_channel, ".csv")
+    
+    url <- paste0("https://api.thingspeak.com/channels/", sensor_channel, "/feed.csv?api_key=", thingspeak_api_key, "&offset=0&average=1440&round=2&start=", start_date, "%2000:00:00&end=", end_date, "%2023")
+    download.file(url, destfile = file.path(out_dir, filename))
+    sensor_dat <- suppressWarnings(read_csv(file.path(out_dir, filename)))
+    names(sensor_dat) <- field_names
+    write_csv(sensor_dat %>% bind_cols(roww), file.path(out_dir, filename))
+  # })
+}
+
+
+wait <- function(df, start_date, end_date, out_dir){
+  df2 <- df %>% 
+    st_drop_geometry() %>% 
+    mutate(filename = paste0(Label, "_", THINGSPEAK_PRIMARY_ID, ".csv")) %>%
+    filter(!filename %in% list.files(out_dir)) 
+
+  for(i in 1:nrow(df2)){
+    tryCatch({
+      get_sensor_data(df2[i,], start_date, end_date, out_dir)
+      Sys.sleep(20)
+      
+    }, error = function(e){
+      print(paste("error: ", e))
+      if(grepl("404", e)){
+        print(paste("wait longer (error):", e))
+        Sys.sleep(120)
+        get_sensor_data(df2[i,], start_date, end_date, out_dir)
+      } 
+      
+    }, warning = function(w){
+      print(paste("warning: ", w))
+      if(grepl("404", w)){
+        print(paste("wait longer (warning):", w))
+        Sys.sleep(120)
+        get_sensor_data(df2[i,], start_date, end_date, out_dir)
+      } 
+      
+    })
+  }
+  
+
+}
+#%>% filter(THINGSPEAK_PRIMARY_ID == 372515)
+wait(df, start_date, end_date, out_dir)
+
+#download NOAA dat
+start_date <- mdy("1-1-18")
+end_date <- mdy("1-1-22")
+n_days <- interval(start_date,end_date)/days(1)
+
+
+dayta_frame <- tibble("fulldate" = start_date + days(0:n_days)) %>% 
+  mutate(month = month(fulldate), 
+         year = year(fulldate), 
+         filename = paste0('https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons/KML/', 
+                           year, "/", 
+                           str_pad(month, 2, "left", "0"), "/smoke", 
+                           str_remove_all(as.character(fulldate), "-"), 
+                           ".kml"))
+
+map(dayta_frame$filename, function(x) {
+  tryCatch(suppressWarnings(download.file(x, destfile = file.path("C:/Users/Carlin/Documents/genoaa_data", str_extract(x, "([^\\/]+$)")))), 
+           error = function(e) paste0(x, " threw error"))
+}
+)
+
