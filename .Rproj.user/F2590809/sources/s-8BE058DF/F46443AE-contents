@@ -41,93 +41,100 @@ get_riskval_from_pos_id <- function(x){
 }
 
 
+tick <- Sys.time()
+
 winner <- list()
-terminating_paths <- list()
 
-# tick <- Sys.time()
-# tries <- 1000
-# 
-# for(try in 1:tries){
-  ##
-  i <- 1
-  pos <- c(1,1)
-  path <- list(get_coord_pos_id(pos)) #initial
-  names(path) <- get_coord_pos_id(pos) #initial
-  end_path <- FALSE
-  first_winner <- FALSE
-  ##
-  while(end_path == FALSE){
-    
-    pos_id <- tail(path[[1]], 1)
-    pos <- get_coord_from_pos_id(pos_id)
-    
-    directions <- list("right" = c(pos[1], pos[2] + 1),
-                       "left" = c(pos[1], pos[2] - 1),
-                       "up" = c(pos[1] - 1, pos[2]),
-                       "down" = c(pos[1] + 1, pos[2])) %>% 
-      keep(~all(.x > 0)) %>% 
-      map(get_coord_pos_id)  %>% 
-      keep(~all(!.x %in% path[[1]])) %>%  #check that new position hasn't been visited before
-      compact()
-    
-    #if there's no winner, take the most direct route
-    if(length(winner) == 0){
-      if((i %% 2) == 0){
-        directions <- directions$right
+i <- 1
+pos <- c(1,1)
+path <- list(get_coord_pos_id(pos)) #initial
+names(path) <- get_coord_pos_id(pos) #initial
+
+
+##
+while(length(path) > 0){
+  
+  pos_id <- tail(path[[1]], 1) #start from the end of the first path in the list
+  pos <- get_coord_from_pos_id(pos_id)
+  
+  directions <- list("down" = c(pos[1] + 1, pos[2]),
+                     "right" = c(pos[1], pos[2] + 1),
+                     "left" = c(pos[1], pos[2] - 1),
+                     "up" = c(pos[1] - 1, pos[2])) %>% 
+    keep(~all(.x > 0)) %>% 
+    map(get_coord_pos_id)  %>% 
+    compact()
+  
+  #if there's no winner, take the most direct route
+  if(length(winner) == 0){
+    if((i %% 2) == 0){
+      directions <- directions$right
+    } else {
+      directions <- directions$down
+    }
+  } 
+  
+  
+  new_path <- map(path[names(path) == pos_id], function(x){ 
+    compact(map(directions, function(y){
+      if(!any(x == y)){ #check that new coordinate hasn't been visited
+        c(x, y)
       } else {
-        directions <- directions$down
+        return(NULL)
       }
-    } 
-    
-    
-    new_path <- map(path[names(path) == pos_id], function(x) map(directions, function(y) c(x, y)))
-    new_path <- unlist(new_path, recursive = FALSE, use.names = FALSE)
-    
-    path <- unname(append(path[!names(path) == pos_id], new_path))
-    path <- unique(path)
+    })) 
+  }) 
+  
+  new_path <- unlist(new_path, recursive = FALSE, use.names = FALSE)
 
-    names(path) <- map(path, ~tail(.x, 1))
-    riskval <- sort(map_dbl(path, function(x) reduce(map(x, function(y) get_riskval_from_pos_id(y)), sum)))
+  path <- unname(append(new_path, path[!names(path) == pos_id]))
+  path <- unique(path)
+  
+  names(path) <- map(path, ~tail(.x, 1))
+  riskval <- map_dbl(path, function(x) reduce(map(x, function(y) get_riskval_from_pos_id(y)), sum))
 
-    #reorder queue
-    min_risk <- path[names(path) == names(riskval)[1]]
-    path <- unique(append(min_risk, path))
-    names(path) <- map(path, ~tail(.x, 1))
-    
-    any(names(path) == 100)
-    
-    if(length(winner) > 0){
-      path <- path[as.numeric(names(riskval)) < as.numeric(names(winner))]
-    } 
-    
-    
-    if(any(map_lgl(directions, ~.x == max(out$pos_id)))){
-      #if it did and the new winner has a lower risk value, replace the winner
-      if(length(winner) != 0){
-        if(riskval < as.numeric(names(winner))){
-          winner <- path
-          names(winner) <- riskval
-        }
-      } else {
-        winner <- path[names(path) == max(out$pos_id)]
-        names(winner) <- reduce(map(winner[[1]], function(x) get_riskval_from_pos_id(x)), sum)
-        paths <- paths[!names(paths) == 100]
-        if(!is.na(i)){
-          i <- NA
-          pos <- c(1,1)
-          path <- list(get_coord_pos_id(pos)) #initial
-          names(path) <- get_coord_pos_id(pos) 
-        }
+  if(length(winner) > 0){
+    path <- path[riskval < as.numeric(names(winner))] #check riskval is less than winner's riskval
+  } 
+
+  if(any(names(path) == "100")){
+    #if it did and the new winner has a lower risk value, replace the winner
+    if(length(winner) != 0){
+      finisher <- path[names(path) == "100"]
+      finisher_riskval <- map_dbl(finisher, function(x) reduce(map(x, function(y) get_riskval_from_pos_id(y)), sum))
+      min_riskval <- which(finisher_riskval == min(finisher_riskval))
+      finisher <- finisher[min_riskval]
+
+      if(any(finisher_riskval < as.numeric(names(winner)))){
+        winner <- finisher[1]
+        names(winner) <- finisher_riskval[min_riskval][1]
+      }
+      
+      path <- path[!names(path) == 100]
+      
+    } else {
+      winner <- path[names(path) == max(out$pos_id)]
+      names(winner) <- reduce(map(winner[[1]], function(x) get_riskval_from_pos_id(x)), sum)
+      path <- path[!names(path) == 100]
+      
+      if(!is.na(i)){
+        i <- NA
+        pos <- c(1,1)
+        path <- list(get_coord_pos_id(pos)) #initial
+        names(path) <- get_coord_pos_id(pos) 
       }
     }
-    
-    print(head(path))
-    print(length(path))
-    i <- i + 1
   }
-
-      
   
+  #print(head(path))
+  #print(length(path))
+  i <- i + 1
+}
+
+tock <- Sys.time()
+tick-tock
+
+
 #     directions <- list("right" = c(pos[1], pos[2] + 1),
 #                        "left" = c(pos[1], pos[2] - 1),
 #                        "up" = c(pos[1] - 1, pos[2]),
