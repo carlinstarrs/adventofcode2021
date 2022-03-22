@@ -1,0 +1,25 @@
+{
+    "id": "1EC1ADB4",
+    "path": null,
+    "project_path": null,
+    "type": "r_code_browser",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1647483332644.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "context": "find_winner():::value[[3L]]"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8027420536779790627,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1647483332644,
+    "read_only": false,
+    "read_only_alternatives": []
+}

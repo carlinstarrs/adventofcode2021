@@ -18,7 +18,7 @@ input <- day15_input
 #https://github.com/tbpaolini/Advent-of-Code/blob/master/2021/Day%2015/chiton.py
 
 traverse_cave <- function(input){
-  
+
   cave_map <- str_split(input, "") %>%
     unlist() %>%
     as.numeric() %>%
@@ -62,7 +62,7 @@ traverse_cave <- function(input){
       }
     }
     
-    
+
     
     visited <- c(visited, list(node))
     
@@ -216,4 +216,3 @@ tick - tock
 # final_riskval <- find_winner(day15_input)
 # tock <- Sys.time()
 # tick-tock
-
